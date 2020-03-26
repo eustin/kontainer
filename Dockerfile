@@ -8,8 +8,12 @@ ENV SPARK_DIR /usr/local/spark
 # this is what pyspark looks for
 ENV SPARK_HOME ${SPARK_DIR}/${SPARK_FNAME}
 
+ENV GITHUB_DIR /root/github
+
+
 # make directories
 RUN mkdir ${SPARK_DIR}
+RUN mkdir ${GITHUB_DIR}$
 
 # update all packages
 RUN apt-get update
@@ -37,6 +41,9 @@ COPY requirements.txt .
 
 RUN pip3 install jupyterlab && jupyter serverextension enable --py jupyterlab && jupyter labextension install @jupyterlab/toc
 RUN pip3 install -r requirements.txt
+
+# set working directory to github folder
+WORKDIR ${GITHUB_DIR}
 
 # ports
 EXPOSE 8888
