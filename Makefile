@@ -4,7 +4,7 @@ build:
 	docker build -t $(APP_NAME) -f Dockerfile .
 
 run:
-	docker run --rm --name $(APP_NAME) -it -d -p 8888:8888 -v $(HOME)/github:/root/github $(APP_NAME)
+	docker run --rm --name $(APP_NAME) -it -d -p 8890:8888 -p 4040:4040 -v $(HOME)/github:/root/github $(APP_NAME)
 
 up: build run
 
